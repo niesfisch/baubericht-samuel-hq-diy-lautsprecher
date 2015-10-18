@@ -1,0 +1,1 @@
+for file in `find . -name "*.jpg" | grep -v "-"`; do thumb=`echo $file|perl -pe 's/\.jpg/-001.jpg/'`; echo "<a href=\"`grealpath $file`\" data-lightbox=\"example-set\" data-title=\"rechts klicken, um weiter zu blättern\"><img src=\"`grealpath $thumb`\" alt=\"$file\"/></a>"; done
