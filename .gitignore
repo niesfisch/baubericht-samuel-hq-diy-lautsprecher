@@ -1,1 +1,3 @@
-page
+page-tmp
+page/images/**/*.jpg
+page/images/**/.picasa.ini
