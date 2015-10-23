@@ -1,1 +1,5 @@
-for file in `find . -name "*.jpg" | grep -v "-"`; do thumb=`echo $file|perl -pe 's/\.jpg/-001.jpg/'`; echo "<a href=\"`grealpath $file`\" data-lightbox=\"example-set\" data-title=\"rechts klicken, um weiter zu blättern\"><img src=\"`grealpath $thumb`\" alt=\"$file\"/></a>"; done
+# convert files to thumbs
+for file in `find . -name "*.jpg"`; do echo $file; name="`basename $file .jpg`_thumb.jpg"; dirname="`dirname $file`"; newname="$dirname/$name"; cnewname=`echo $newname | perl -pe 's/\.\///'`; sips -Z 150 $file --out $cnewname; done
+
+# create links
+for thumb in `find . -name "*_thumb.jpg"`; do thumbnail="images/`echo $thumb |  perl -pe 's/\.\///'`"; dir=`dirname $thumbnail`; setname=`echo $dir | perl -pe 's/images\///'`; big="`echo $thumbnail|perl -pe 's/_thumb//'| perl -pe 's/\.\///'`"; echo "<a href=\"$big\" data-lightbox=\"$setname\" data-title=\"rechts klicken, um weiter zu blättern\"><img src=\"$thumbnail\" alt=\"$setname\"/></a>"; done
